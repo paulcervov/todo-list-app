@@ -6,10 +6,12 @@ import {
     Delete as DeleteIcon
 } from '@material-ui/icons';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function ItemDisplay({item, onItemUpdate, onItemRemoval}) {
 
     const toggleCompletion = () => {
-        fetch(`/items/${item.id}`, {
+        fetch(`${API_URL}/${item.id}`, {
             method: 'PUT',
             body: JSON.stringify({
                 name: item.name,
@@ -22,9 +24,8 @@ function ItemDisplay({item, onItemUpdate, onItemRemoval}) {
     };
 
     const removeItem = () => {
-        fetch(`/items/${item.id}`, {method: 'DELETE'}).then(() =>
-            onItemRemoval(item),
-        );
+        fetch(`${API_URL}/${item.id}`, {method: 'DELETE'})
+            .then(() => onItemRemoval(item));
     };
 
     return (

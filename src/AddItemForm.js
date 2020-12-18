@@ -2,6 +2,8 @@
 import {Grid, Button, TextField} from '@material-ui/core';
 import React from "react";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function AddItemForm({onNewItem}) {
 
     const [newItem, setNewItem] = React.useState('');
@@ -10,13 +12,13 @@ function AddItemForm({onNewItem}) {
     const submitNewItem = (e) => {
         e.preventDefault();
         setSubmitting(true);
-        fetch('/items', {
+        fetch(API_URL, {
             method: 'POST',
             body: JSON.stringify({name: newItem}),
             headers: {'Content-Type': 'application/json'},
         })
             .then(r => r.json())
-            .then(item => {
+            .then((item) => {
                 onNewItem(item);
                 setSubmitting(false);
                 setNewItem('');

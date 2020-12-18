@@ -1,13 +1,16 @@
+
 import React, {useCallback, useState, useEffect} from 'react';
 import ItemDisplay from './ItemDisplay';
 import AddItemForm from './AddItemForm'
 import {Box} from "@material-ui/core";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 function TodoListCard() {
     const [items, setItems] = useState(null);
 
     useEffect(() => {
-        fetch('/items')
+        fetch(API_URL)
             .then(r => r.json())
             .then(setItems);
     }, []);
