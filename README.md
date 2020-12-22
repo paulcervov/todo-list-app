@@ -39,5 +39,8 @@ See all [available scripts](https://create-react-app.dev/docs/available-scripts)
     ```
 5. `docker logs -f todo-list-app`
 
-See all [base commands](https://docs.docker.com/engine/reference/commandline/docker/).
+Wait for the container to be loaded.
 
+To stop container enter `docker stop todo-list-app`.
+
+See all [base commands](https://docs.docker.com/engine/reference/commandline/docker/).
