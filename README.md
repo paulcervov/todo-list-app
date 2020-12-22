@@ -25,7 +25,7 @@ See all [available scripts](https://create-react-app.dev/docs/available-scripts)
 4. ```
     docker run \
     --name todo-list-app --rm \
-    -dp 80:80 -w /app \
+    -dp 80:5000 -w /app \
     -v $(pwd)/package.json:/app/package.json \
     -v $(pwd)/package-lock.json:/app/package-lock.json \
     -v $(pwd)/src:/app/src \
@@ -35,7 +35,7 @@ See all [available scripts](https://create-react-app.dev/docs/available-scripts)
     node:lts-alpine sh -c "npm ci --production && \
         npm run build && \
         npm i -g serve && \
-        serve -s build -l tcp://0.0.0.0:80"
+        serve -s build -l tcp://0.0.0.0:5000"
     ```
 5. `docker logs -f todo-list-app`
 
