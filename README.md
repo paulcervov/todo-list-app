@@ -1,46 +1,43 @@
 # Todo List App
 
-⚛️ Frontend part of simple todo list app.
+This project is part of the [Todo List](https://github.com/paulcervov/todo-list) project.
 
-Inspired by [Docker Getting Started Tutorial](https://github.com/docker/getting-started).
+## Setup and run local
 
-🐬 Backend part is in a separate [repository](https://github.com/paulcervov/todo-list-api).
+1. `git clone https://github.com/paulcervov/todo-list-app.git && cd todo-list-app`
 
-## Available Scripts
+2. `cp .env .env.development.local`
 
-In the project directory, you can run:
+3. fill `.env.development.local` file
 
-### `npm start`
+4. `npm run start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+See all [available scripts](https://create-react-app.dev/docs/available-scripts).
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Setup and run in production (with Docker)
 
-### `npm test`
+1. `git clone https://github.com/paulcervov/todo-list-app.git && cd todo-list-app`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. `cp .env .env.production`
 
-### `npm run build`
+3. fill `.env.production` file
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. ```
+    docker run \
+    --name todo-list-app --rm \
+    -dp 80:80 -w /app \
+    -v $(pwd)/package.json:/app/package.json \
+    -v $(pwd)/package-lock.json:/app/package-lock.json \
+    -v $(pwd)/src:/app/src \
+    -v $(pwd)/public:/app/public \
+    -v $(pwd)/build:/app/build \
+    --env-file $(pwd)/.env.production \
+    node:lts-alpine sh -c "npm ci --production && \
+        npm run build && \
+        npm i -g serve && \
+        serve -s build -l tcp://0.0.0.0:80"
+    ```
+5. `docker logs -f todo-list-app`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+See all [base commands](https://docs.docker.com/engine/reference/commandline/docker/).
 
-### `docker-compose up -d`
-
-Deploy app with Docker and Nginx.\
-Open [http://localhost](http://localhost) to view it in the browser.
-
-
-### `docker-compose logs -f`
-
-Viewing nginx logs.
-
-### `docker-compose down`
-
-Stops the app.
