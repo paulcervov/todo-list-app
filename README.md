@@ -14,7 +14,7 @@ This project is part of the [Todo List](https://github.com/paulcervov/todo-list)
 
 See all [available scripts](https://create-react-app.dev/docs/available-scripts).
 
-### Setup and run in production (with Docker)
+### Setup and run with Docker
 
 1. `git clone https://github.com/paulcervov/todo-list-app.git && cd todo-list-app`
 
