@@ -2,7 +2,7 @@
 
 This project is part of the [Todo List](https://github.com/paulcervov/todo-list) project.
 
-## Setup and run local
+## Setup and run 
 
 1. `git clone https://github.com/paulcervov/todo-list-app.git && cd todo-list-app`
 
@@ -10,37 +10,31 @@ This project is part of the [Todo List](https://github.com/paulcervov/todo-list)
 
 3. fill `.env.development.local` file
 
-4. `npm run start`
+### Local development
+
+`npm run start`
+
+### Local production build
+
+`npm run build`
+
+### Local production run
+
+`serve -s build`
 
 See all [available scripts](https://create-react-app.dev/docs/available-scripts).
 
-## Setup and run with Docker
+### Docker production build
 
-1. `git clone https://github.com/paulcervov/todo-list-app.git && cd todo-list-app`
+`docker build -t todo-list-app .`
 
-2. `cp .env .env.production`
+### Docker production run
 
-3. fill `.env.production` file
-
-4. ```
-    docker run \
-    --name todo-list-app --rm \
-    -dp 80:5000 -w /app \
-    -v $(pwd)/package.json:/app/package.json \
-    -v $(pwd)/package-lock.json:/app/package-lock.json \
-    -v $(pwd)/src:/app/src \
-    -v $(pwd)/public:/app/public \
-    -v $(pwd)/build:/app/build \
-    --env-file $(pwd)/.env.production \
-    node:lts-alpine sh -c "npm ci --production && \
-        npm run build && \
-        npm i -g serve && \
-        serve -s build -l tcp://0.0.0.0:5000"
-    ```
-5. `docker logs -f todo-list-app`
-
-Wait for the container to be loaded.
-
-To stop container enter `docker stop todo-list-app`.
+```
+docker run \
+--name todo-list-app --rm \
+-dp 80:80 \
+todo-list-app 
+```
 
 See all [base commands](https://docs.docker.com/engine/reference/commandline/docker/).
