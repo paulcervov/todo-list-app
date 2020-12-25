@@ -34,7 +34,8 @@ See all [available scripts](https://create-react-app.dev/docs/available-scripts)
 docker run \
 --name todo-list-app --rm \
 -dp 80:80 \
-todo-list-app 
+--env-file ./.env.production.local \
+todo-list-app
 ```
 
 See all [base commands](https://docs.docker.com/engine/reference/commandline/docker/).
